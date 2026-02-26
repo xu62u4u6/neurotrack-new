@@ -12,24 +12,71 @@
         theme: {
           extend: {
             colors: {
+              // ── 基礎底色 (Background & Surface) ──
               neuro: {
                 bg: '#F4EBE6',      // 溫暖大地色底色
                 card: '#FFFFFF',    // 卡片純白底色
                 surface: '#F9FAFB', // 稍暗的表面色
               },
+
+              // ── 粉彩系列 (Pastel Palette) ──
               pastel: {
                 yellow: '#FBE082',  // 語音日記 / 開心
-                green: '#CBE4D6',   // 用藥提醒 / 平靜 / 完成進度
+                green: '#CBE4D6',   // 睡眠紀錄 / 平靜 / 完成進度
                 blue: '#BBD0FF',    // 認知遊戲 / 疲倦
-                peach: '#E39882',   // 困惑 / 圖表輔助色
+                peach: '#E39882',   // 用藥提醒 / 圖表輔助色
                 olive: '#919E75',   // 較深的圖表色 / 健康活躍
                 neutral: '#E5E7EB', // 無感 / 預設底色
               },
+
+              // ── 文字色階 (Ink / Typography) ──
               ink: {
                 main: '#1F2937',    // 主要標題/文字
                 sub: '#6B7280',     // 次要資訊
                 muted: '#9CA3AF',   // 輔助/提示文字
-              }
+              },
+
+              // ── 互動元素 (Interaction / Buttons) ──
+              interaction: {
+                DEFAULT: '#1F2937', // 主要按鈕背景
+                hover: '#374151',   // 按鈕 hover 態
+                user: '#1F2937',    // 用戶訊息泡泡
+              },
+
+              // ── 灰階梯度 (Neutral Scale) ──
+              neutral: {
+                50: '#F9FAFB',      // 最淺表面
+                100: '#F3F4F6',     // 導覽列 active bg / SVG 網格
+                200: '#E5E7EB',     // 完成打勾底 / SVG 軸線
+                300: '#D1D5DB',     // 邊框 hover
+                400: '#9CA3AF',     // 非活躍圖示/提示文字
+                500: '#6B7280',     // 次要文字
+                600: '#4B5563',     // 加深輔助
+                700: '#374151',     // 深輔助
+                800: '#1F2937',     // 主要文字/按鈕
+              },
+
+              // ── 語意狀態色 (Status / Semantic) ──
+              status: {
+                success: '#22C55E',       // 活躍指示點
+                'success-icon': '#15803D', // 完成勾勾圖示
+                'success-bg': '#CBE4D6',   // 成功底色 (=pastel-green)
+                warning: '#F59E0B',        // 警示/提醒
+                'warning-icon': '#A16207', // 警示圖示
+                danger: '#EF4444',         // 錯誤/危險
+              },
+
+              // ── 粉彩卡片上的深色 (On-Pastel Content) ──
+              'on-pastel': {
+                blue: '#1E3A8A',          // text on pastel-blue (=blue-900)
+                'blue-icon': '#1D4ED8',   // icon on pastel-blue (=blue-700)
+                yellow: '#713F12',        // text on pastel-yellow (=yellow-900)
+                'yellow-icon': '#A16207', // icon on pastel-yellow (=yellow-700)
+                green: '#14532D',         // text on pastel-green (=green-900)
+                'green-icon': '#15803D',  // icon on pastel-green (=green-700)
+                peach: '#7F1D1D',         // text on pastel-peach (=red-900)
+                'peach-icon': '#B91C1C',  // icon on pastel-peach (=red-700)
+              },
             },
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],

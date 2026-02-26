@@ -94,8 +94,8 @@ const CognitiveTest: React.FC<CognitiveTestProps> = ({ onComplete, onExit }) => 
             onClick={startTest}
             className="group relative flex items-center justify-center w-24 h-24 bg-pastel-blue rounded-full hover:bg-pastel-blue/80 transition-all active:scale-95 touch-manipulation"
           >
-            <Play className="text-blue-700 ml-1" size={40} />
-            <span className="absolute -bottom-8 text-sm font-semibold text-blue-700">開始測驗</span>
+            <Play className="text-on-pastel-blue-icon ml-1" size={40} />
+            <span className="absolute -bottom-8 text-sm font-semibold text-on-pastel-blue-icon">開始測驗</span>
           </button>
         )}
 
@@ -120,7 +120,7 @@ const CognitiveTest: React.FC<CognitiveTestProps> = ({ onComplete, onExit }) => 
             />
             <button
               onClick={handleSubmit}
-              className="mt-6 w-full py-4 bg-ink-main text-white rounded-2xl font-bold hover:bg-gray-800 transition-colors active:scale-[0.98]"
+              className="mt-6 w-full py-4 bg-interaction text-white rounded-2xl font-bold hover:bg-interaction-hover transition-colors active:scale-[0.98]"
             >
               提交答案
             </button>
@@ -130,7 +130,7 @@ const CognitiveTest: React.FC<CognitiveTestProps> = ({ onComplete, onExit }) => 
         {status === 'FINISHED' && (
           <div className="text-center">
             <div className="w-20 h-20 bg-pastel-green rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="text-green-700" size={48} />
+              <CheckCircle className="text-status-success-icon" size={48} />
             </div>
             <h3 className="text-2xl font-bold text-ink-main">測驗完成！</h3>
             <p className="text-ink-sub mt-2">您的得分</p>

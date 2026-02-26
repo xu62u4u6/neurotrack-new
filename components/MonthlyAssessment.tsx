@@ -25,7 +25,7 @@ const MonthlyAssessment: React.FC<MonthlyAssessmentProps> = ({ onComplete, onExi
       onClick={onClick}
       className="w-full p-4 bg-neuro-surface rounded-2xl text-left hover:bg-pastel-green/30 transition-all flex items-center gap-3 active:scale-[0.98] touch-manipulation"
     >
-      <X size={20} className="text-gray-400 flex-shrink-0" />
+      <X size={20} className="text-neutral-400 flex-shrink-0" />
       <span className="font-medium text-ink-main">{children}</span>
     </button>
   );
@@ -36,14 +36,14 @@ const MonthlyAssessment: React.FC<MonthlyAssessmentProps> = ({ onComplete, onExi
         return (
           <div className="text-center py-8">
              <div className="w-32 h-32 bg-pastel-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                <Brain size={64} className="text-blue-700" />
+                <Brain size={64} className="text-on-pastel-blue-icon" />
              </div>
              <h2 className="text-2xl font-bold text-ink-main mb-4">每月大腦健康檢查</h2>
              <p className="text-ink-sub mb-8 leading-relaxed">
                這是一個稍微詳細一點的評估，大約需要 5-10 分鐘。<br/>
                完成後您可以獲得 <span className="text-pastel-peach font-bold text-xl">100 分</span> 的獎勵！
              </p>
-             <button onClick={handleNext} className="w-full py-4 bg-ink-main text-white rounded-2xl font-bold text-lg shadow-[0_8px_30px_rgb(0,0,0,0.1)] hover:bg-gray-800 transition-all active:scale-[0.98]">
+             <button onClick={handleNext} className="w-full py-4 bg-interaction text-white rounded-2xl font-bold text-lg shadow-[0_8px_30px_rgb(0,0,0,0.1)] hover:bg-interaction-hover transition-all active:scale-[0.98]">
                開始評估
              </button>
           </div>
@@ -66,10 +66,10 @@ const MonthlyAssessment: React.FC<MonthlyAssessmentProps> = ({ onComplete, onExi
             <h3 className="text-xl font-bold text-ink-main">2. 記憶力測試</h3>
             <p className="text-ink-sub">請記住這三個詞：</p>
             <div className="bg-pastel-yellow p-6 rounded-2xl">
-              <span className="text-2xl font-bold text-yellow-900 block text-center">蘋果、硬幣、桌子</span>
+              <span className="text-2xl font-bold text-on-pastel-yellow block text-center">蘋果、硬幣、桌子</span>
             </div>
             <p className="text-ink-muted text-sm">等一下會請您重複。</p>
-            <button onClick={handleNext} className="w-full py-4 bg-ink-main text-white rounded-2xl font-bold active:scale-[0.98] transition-all">我記住了</button>
+            <button onClick={handleNext} className="w-full py-4 bg-interaction text-white rounded-2xl font-bold active:scale-[0.98] transition-all">我記住了</button>
           </div>
         );
       case 3:
@@ -100,11 +100,11 @@ const MonthlyAssessment: React.FC<MonthlyAssessmentProps> = ({ onComplete, onExi
         return (
            <div className="text-center py-8">
              <div className="w-24 h-24 bg-pastel-green rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle size={48} className="text-green-700" />
+                <CheckCircle size={48} className="text-status-success-icon" />
              </div>
              <h2 className="text-2xl font-bold text-ink-main mb-2">評估完成！</h2>
              <p className="text-ink-sub mb-8">感謝您的耐心配合，這些資料將對醫生很有幫助。</p>
-             <button onClick={handleNext} className="w-full py-4 bg-ink-main text-white rounded-2xl font-bold text-lg shadow-[0_8px_30px_rgb(0,0,0,0.1)] hover:bg-gray-800 transition-all flex items-center justify-center active:scale-[0.98]">
+             <button onClick={handleNext} className="w-full py-4 bg-interaction text-white rounded-2xl font-bold text-lg shadow-[0_8px_30px_rgb(0,0,0,0.1)] hover:bg-interaction-hover transition-all flex items-center justify-center active:scale-[0.98]">
                領取 100 積分
                <ArrowRight className="ml-2" />
              </button>

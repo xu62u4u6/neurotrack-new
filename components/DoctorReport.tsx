@@ -24,17 +24,17 @@ const DoctorReport: React.FC = () => {
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="bg-pastel-blue p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col justify-between aspect-square">
           <div>
-            <span className="text-blue-900/60 font-medium text-sm">短期記憶分數</span>
-            <p className="text-4xl font-bold text-blue-900 mt-2 tabular-nums">26<span className="text-lg font-medium">/30</span></p>
+            <span className="text-on-pastel-blue/60 font-medium text-sm">短期記憶分數</span>
+            <p className="text-4xl font-bold text-on-pastel-blue mt-2 tabular-nums">26<span className="text-lg font-medium">/30</span></p>
           </div>
-          <span className="text-xs bg-white/40 text-blue-900 px-2 py-1 rounded-full mt-3 inline-block font-medium self-start">狀態良好</span>
+          <span className="text-xs bg-white/40 text-on-pastel-blue px-2 py-1 rounded-full mt-3 inline-block font-medium self-start">狀態良好</span>
         </div>
         <div className="bg-pastel-peach p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col justify-between aspect-square">
           <div>
-            <span className="text-red-900/60 font-medium text-sm">大腦活力年齡</span>
-            <p className="text-4xl font-bold text-red-900 mt-2 tabular-nums">68<span className="text-lg font-medium">歲</span></p>
+            <span className="text-on-pastel-peach/60 font-medium text-sm">大腦活力年齡</span>
+            <p className="text-4xl font-bold text-on-pastel-peach mt-2 tabular-nums">68<span className="text-lg font-medium">歲</span></p>
           </div>
-          <span className="text-xs bg-white/40 text-red-900 px-2 py-1 rounded-full mt-3 inline-block font-medium self-start">比實際年輕</span>
+          <span className="text-xs bg-white/40 text-on-pastel-peach px-2 py-1 rounded-full mt-3 inline-block font-medium self-start">比實際年輕</span>
         </div>
       </div>
 
@@ -66,7 +66,7 @@ const DoctorReport: React.FC = () => {
               <span className="absolute -top-6 text-xs font-bold text-ink-sub opacity-0 group-hover:opacity-100 transition-opacity">
                 {item.value}%
               </span>
-              <div className="w-8 md:w-10 h-32 md:h-40 bg-neuro-surface rounded-full flex flex-col justify-end overflow-hidden relative group-hover:bg-gray-100 transition-colors">
+              <div className="w-8 md:w-10 h-32 md:h-40 bg-neuro-surface rounded-full flex flex-col justify-end overflow-hidden relative group-hover:bg-neutral-100 transition-colors">
                 <div
                   className={`w-full rounded-full ${item.color} transition-all duration-1000 ease-out absolute bottom-0 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]`}
                   style={{ height: `${item.value}%` }}
@@ -82,7 +82,7 @@ const DoctorReport: React.FC = () => {
       <button className="bg-white p-6 rounded-[2rem] shadow-sm border border-neuro-surface flex items-center justify-between w-full text-left touch-manipulation">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-pastel-yellow rounded-2xl flex items-center justify-center">
-            <Calendar className="text-yellow-700" size={24} />
+            <Calendar className="text-on-pastel-yellow-icon" size={24} />
           </div>
           <div>
             <h4 className="font-bold text-ink-main">查看詳細月報</h4>
@@ -118,7 +118,7 @@ const SleepWaveChart: React.FC = () => {
             opacity="0.8"
           />
         </svg>
-        <div className="absolute top-3 left-4 text-xs font-bold text-blue-900/50">深睡區間</div>
+        <div className="absolute top-3 left-4 text-xs font-bold text-on-pastel-blue/50">深睡區間</div>
         <div className="absolute bottom-3 right-4 text-xs font-medium text-ink-muted">昨晚 7.5 小時</div>
       </div>
       <div className="flex justify-between mt-4 px-2">

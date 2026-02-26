@@ -95,7 +95,7 @@ const SpeechRecording: React.FC<SpeechRecordingProps> = ({ onComplete, onExit })
       </header>
 
       <div className="bg-pastel-yellow p-6 rounded-[2rem] shadow-sm mb-6">
-        <blockquote className="text-xl leading-relaxed font-medium text-yellow-900">
+        <blockquote className="text-xl leading-relaxed font-medium text-on-pastel-yellow">
           「{inputData.script_text}」
         </blockquote>
       </div>
@@ -113,9 +113,9 @@ const SpeechRecording: React.FC<SpeechRecordingProps> = ({ onComplete, onExit })
             }`}
           >
             {isRecording ? (
-              <Square size={32} className="text-red-800 fill-current" />
+              <Square size={32} className="text-on-pastel-peach fill-current" />
             ) : (
-              <Mic size={36} className="text-green-900" />
+              <Mic size={36} className="text-on-pastel-green" />
             )}
           </button>
         </div>
@@ -144,7 +144,7 @@ const SpeechRecording: React.FC<SpeechRecordingProps> = ({ onComplete, onExit })
             <button
               onClick={handleUpload}
               disabled={uploading}
-              className="w-full py-4 bg-ink-main text-white rounded-2xl font-bold hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 active:scale-[0.98]"
+              className="w-full py-4 bg-interaction text-white rounded-2xl font-bold hover:bg-interaction-hover transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 active:scale-[0.98]"
             >
               {uploading ? (
                 <span>上傳中…</span>

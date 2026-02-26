@@ -17,7 +17,12 @@ const App: React.FC = () => {
   // Gamification State
   const [score, setScore] = useState<number>(() => {
     const saved = localStorage.getItem('neurotrack_score');
-    return saved ? parseInt(saved, 10) : 1250; // Default start score
+    return saved ? parseInt(saved, 10) : 0; // Adjusted default start score to 0
+  });
+
+  const [completedTasks, setCompletedTasks] = useState<string[]>(() => {
+    const saved = localStorage.getItem('neurotrack_completed_tasks');
+    return saved ? JSON.parse(saved) : [];
   });
 
   const [showReward, setShowReward] = useState<{points: number, visible: boolean}>({ points: 0, visible: false });
@@ -26,13 +31,20 @@ const App: React.FC = () => {
     localStorage.setItem('neurotrack_score', score.toString());
   }, [score]);
 
+  useEffect(() => {
+    localStorage.setItem('neurotrack_completed_tasks', JSON.stringify(completedTasks));
+  }, [completedTasks]);
+
   // Calculate Level based on score (Simple formula: every 500 points is a level)
   const currentLevel = Math.floor(score / 500) + 1;
   const nextLevelScore = currentLevel * 500;
   const progressToNext = ((score % 500) / 500) * 100;
 
-  const handleAddPoints = (points: number) => {
+  const handleAddPoints = (points: number, taskId?: string) => {
     setScore(prev => prev + points);
+    if (taskId && !completedTasks.includes(taskId)) {
+      setCompletedTasks(prev => [...prev, taskId]);
+    }
     setShowReward({ points, visible: true });
     
     // Hide reward notification after 3 seconds
@@ -51,18 +63,19 @@ const App: React.FC = () => {
             level={currentLevel} 
             progress={progressToNext} 
             nextLevelScore={nextLevelScore}
+            completedTasks={completedTasks}
           />
         );
       case AppScreen.DATA_REPORT:
         return <DoctorReport />;
       case AppScreen.COGNITIVE:
-        return <CognitiveTest onComplete={(pts) => handleAddPoints(pts)} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
+        return <CognitiveTest onComplete={(pts) => handleAddPoints(pts, 'cognitive')} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
       case AppScreen.SPEECH:
-        return <SpeechRecording onComplete={(pts) => handleAddPoints(pts)} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
+        return <SpeechRecording onComplete={(pts) => handleAddPoints(pts, 'voice')} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
       case AppScreen.SLEEP:
-        return <SleepLog onComplete={(pts) => handleAddPoints(pts)} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
+        return <SleepLog onComplete={(pts) => handleAddPoints(pts, 'sleep')} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
       case AppScreen.MEDICATION:
-        return <Medication onComplete={(pts) => handleAddPoints(pts)} />;
+        return <Medication onComplete={(pts) => handleAddPoints(pts, 'meds')} />;
       case AppScreen.AI_CHAT:
         return <AiAssistant />;
       case AppScreen.MONTHLY_ASSESSMENT:

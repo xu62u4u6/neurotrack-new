@@ -70,7 +70,7 @@ const SleepLog: React.FC<SleepLogProps> = ({ onComplete, onExit }) => {
         {/* Time Inputs */}
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-pastel-blue p-4 rounded-[2rem] shadow-sm">
-            <div className="flex items-center space-x-2 mb-3 text-blue-700">
+            <div className="flex items-center space-x-2 mb-3 text-on-pastel-blue-icon">
               <Moon size={20} />
               <label htmlFor="sleep-time" className="text-sm font-semibold">就寢時間</label>
             </div>
@@ -79,12 +79,12 @@ const SleepLog: React.FC<SleepLogProps> = ({ onComplete, onExit }) => {
               type="time"
               value={sleepTime}
               onChange={(e) => setSleepTime(e.target.value)}
-              className="w-full text-2xl font-bold text-blue-900 bg-white/50 rounded-xl p-2 border-none outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              className="w-full text-2xl font-bold text-on-pastel-blue bg-white/50 rounded-xl p-2 border-none outline-none focus-visible:ring-2 focus-visible:ring-on-pastel-blue-icon"
             />
           </div>
 
           <div className="bg-pastel-yellow p-4 rounded-[2rem] shadow-sm">
-            <div className="flex items-center space-x-2 mb-3 text-yellow-700">
+            <div className="flex items-center space-x-2 mb-3 text-on-pastel-yellow-icon">
               <Sun size={20} />
               <label htmlFor="wake-time" className="text-sm font-semibold">起床時間</label>
             </div>
@@ -93,7 +93,7 @@ const SleepLog: React.FC<SleepLogProps> = ({ onComplete, onExit }) => {
               type="time"
               value={wakeTime}
               onChange={(e) => setWakeTime(e.target.value)}
-              className="w-full text-2xl font-bold text-yellow-900 bg-white/50 rounded-xl p-2 border-none outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+              className="w-full text-2xl font-bold text-on-pastel-yellow bg-white/50 rounded-xl p-2 border-none outline-none focus-visible:ring-2 focus-visible:ring-on-pastel-yellow-icon"
             />
           </div>
         </div>
@@ -116,10 +116,10 @@ const SleepLog: React.FC<SleepLogProps> = ({ onComplete, onExit }) => {
                 className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all touch-manipulation active:scale-95 ${
                   quality === opt.value
                     ? 'border-pastel-olive bg-pastel-green text-green-900'
-                    : 'border-neuro-surface bg-neuro-card text-ink-muted hover:border-gray-300'
+                    : 'border-neuro-surface bg-neuro-card text-ink-muted hover:border-neutral-300'
                 }`}
               >
-                <opt.Icon size={24} className={`mb-1 ${quality === opt.value ? 'text-green-700' : 'text-gray-500'}`} />
+                <opt.Icon size={24} className={`mb-1 ${quality === opt.value ? 'text-on-pastel-green-icon' : 'text-neutral-500'}`} />
                 <span className="text-xs font-semibold">{opt.label}</span>
               </button>
             ))}
@@ -128,7 +128,7 @@ const SleepLog: React.FC<SleepLogProps> = ({ onComplete, onExit }) => {
 
         <button
           type="submit"
-          className="w-full py-4 bg-ink-main text-white rounded-2xl font-bold text-lg hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2 shadow-[0_8px_30px_rgb(0,0,0,0.1)] active:scale-[0.98]"
+          className="w-full py-4 bg-interaction text-white rounded-2xl font-bold text-lg hover:bg-interaction-hover transition-colors flex items-center justify-center space-x-2 shadow-[0_8px_30px_rgb(0,0,0,0.1)] active:scale-[0.98]"
         >
           <Save size={20} />
           <span>儲存記錄 (+10分)</span>

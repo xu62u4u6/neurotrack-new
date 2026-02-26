@@ -108,12 +108,12 @@ const AiAssistant: React.FC = () => {
           // 系統健康播報訊息
           if (msg.isSystem) {
             return (
-              <div key={msg.id} className="bg-[#BBD0FF] p-5 rounded-[2rem] rounded-tl-none shadow-sm w-[85%]">
+              <div key={msg.id} className="bg-pastel-blue p-5 rounded-[2rem] rounded-tl-none shadow-sm w-[85%]">
                 <div className="flex items-center gap-2 mb-2">
-                  <CalendarCheck size={16} className="text-blue-900/60" />
-                  <span className="text-xs font-bold text-blue-900/60">健康播報</span>
+                  <CalendarCheck size={16} className="text-on-pastel-blue/60" />
+                  <span className="text-xs font-bold text-on-pastel-blue/60">健康播報</span>
                 </div>
-                <p className="text-blue-900 font-medium leading-relaxed">{msg.text}</p>
+                <p className="text-on-pastel-blue font-medium leading-relaxed">{msg.text}</p>
               </div>
             );
           }
@@ -123,10 +123,10 @@ const AiAssistant: React.FC = () => {
             return (
               <div key={msg.id} className="flex gap-3 w-[90%]">
                 <div className="w-10 h-10 rounded-full bg-white shadow-sm flex-shrink-0 flex items-center justify-center">
-                  <Bot size={20} className="text-gray-500" />
+                  <Bot size={20} className="text-neutral-500" />
                 </div>
-                <div className="bg-[#FBE082] p-5 rounded-[2rem] rounded-tl-none shadow-sm">
-                  <p className="text-yellow-900 font-medium leading-relaxed">{msg.text}</p>
+                <div className="bg-pastel-yellow p-5 rounded-[2rem] rounded-tl-none shadow-sm">
+                  <p className="text-on-pastel-yellow font-medium leading-relaxed">{msg.text}</p>
                 </div>
               </div>
             );
@@ -135,7 +135,7 @@ const AiAssistant: React.FC = () => {
           // 使用者訊息
           return (
             <div key={msg.id} className="flex justify-end">
-              <div className="bg-gray-800 text-white p-5 rounded-[2rem] rounded-tr-none shadow-md max-w-[85%]">
+              <div className="bg-interaction text-white p-5 rounded-[2rem] rounded-tr-none shadow-md max-w-[85%]">
                 <p className="font-medium leading-relaxed">{msg.text}</p>
               </div>
             </div>
@@ -146,12 +146,12 @@ const AiAssistant: React.FC = () => {
         {isLoading && (
           <div className="flex gap-3 w-[90%]">
             <div className="w-10 h-10 rounded-full bg-white shadow-sm flex-shrink-0 flex items-center justify-center">
-              <Sparkles size={18} className="text-yellow-600 animate-spin" />
+              <Sparkles size={18} className="text-on-pastel-yellow-icon animate-spin" />
             </div>
-            <div className="bg-[#FBE082]/50 p-5 rounded-[2rem] rounded-tl-none shadow-sm flex items-center gap-2">
-              <div className="w-2 h-2 bg-yellow-700 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-              <div className="w-2 h-2 bg-yellow-700 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
-              <div className="w-2 h-2 bg-yellow-700 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+            <div className="bg-pastel-yellow/50 p-5 rounded-[2rem] rounded-tl-none shadow-sm flex items-center gap-2">
+              <div className="w-2 h-2 bg-on-pastel-yellow-icon rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+              <div className="w-2 h-2 bg-on-pastel-yellow-icon rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+              <div className="w-2 h-2 bg-on-pastel-yellow-icon rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
             </div>
           </div>
         )}
@@ -168,13 +168,13 @@ const AiAssistant: React.FC = () => {
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="跟助理說說話..."
-            className="bg-transparent flex-1 outline-none focus-visible:ring-2 focus-visible:ring-gray-400 rounded text-gray-700 font-medium"
+            className="bg-transparent flex-1 outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded text-neutral-700 font-medium"
           />
           <button
             onClick={handleSend}
             disabled={!inputText.trim() || isLoading}
             aria-label="發送訊息"
-            className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white ml-2 disabled:opacity-50 transition-all active:scale-95"
+            className="w-10 h-10 bg-interaction rounded-full flex items-center justify-center text-white ml-2 disabled:opacity-50 transition-all active:scale-95"
           >
             <Send size={16} className="ml-0.5" />
           </button>

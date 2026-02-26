@@ -33,15 +33,15 @@ const Navigation: React.FC<NavigationProps> = ({ currentScreen, onNavigate }) =>
             className="flex flex-col items-center gap-1.5 w-14 relative active-press"
           >
             {/* 背景圓形 - 放最底層 */}
-            {isActive && <div className="absolute top-0.5 w-10 h-10 bg-gray-100 rounded-full"></div>}
+            {isActive && <div className="absolute top-0.5 w-10 h-10 bg-neutral-100 rounded-full"></div>}
 
             {/* 圖示 */}
-            <div className={`relative z-10 transition-all duration-300 ${isActive ? 'text-gray-800 -translate-y-2' : 'text-gray-400'}`}>
+            <div className={`relative z-10 transition-all duration-300 ${isActive ? 'text-neutral-800 -translate-y-2' : 'text-neutral-400'}`}>
               <item.icon size={24} />
             </div>
 
             {/* 文字標籤 */}
-            <span className={`relative z-10 text-[10px] font-bold transition-all duration-300 ${isActive ? 'text-gray-800 opacity-100' : 'text-gray-400 opacity-0'}`}>
+            <span className={`relative z-10 text-[10px] font-bold transition-all duration-300 ${isActive ? 'text-neutral-800 opacity-100' : 'text-neutral-400 opacity-0'}`}>
               {item.label}
             </span>
           </button>
