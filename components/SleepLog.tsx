@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Moon, Sun, Save } from 'lucide-react';
+import { Moon, Sun, Save, Frown, Meh, Smile, Laugh, ArrowLeft } from 'lucide-react';
 import { SleepInput, SleepOutput } from '../types';
 
 interface SleepLogProps {
     onComplete?: (points: number) => void;
+    onExit?: () => void;
 }
 
-const SleepLog: React.FC<SleepLogProps> = ({ onComplete }) => {
+const SleepLog: React.FC<SleepLogProps> = ({ onComplete, onExit }) => {
   const inputData: SleepInput = {
     default_sleep_time: '23:00',
     default_wake_time: '07:00',
@@ -45,71 +46,80 @@ const SleepLog: React.FC<SleepLogProps> = ({ onComplete }) => {
   };
 
   const qualityOptions = [
-    { value: 'poor', label: '差', emoji: '😫' },
-    { value: 'fair', label: '尚可', emoji: '😐' },
-    { value: 'good', label: '好', emoji: '🙂' },
-    { value: 'excellent', label: '極佳', emoji: '😃' },
+    { value: 'poor', label: '差', Icon: Frown },
+    { value: 'fair', label: '尚可', Icon: Meh },
+    { value: 'good', label: '好', Icon: Smile },
+    { value: 'excellent', label: '極佳', Icon: Laugh },
   ];
 
   return (
-    <div className="p-6 max-w-lg mx-auto min-h-screen pb-24">
+    <div className="p-6 min-h-screen pb-32 bg-neuro-bg">
+      {/* 返回按鈕 */}
+      {onExit && (
+        <button onClick={onExit} aria-label="返回" className="p-2 -ml-2 mb-4 text-ink-muted hover:text-ink-main transition-colors">
+          <ArrowLeft size={24} />
+        </button>
+      )}
+
       <header className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-800">睡眠記錄</h1>
-        <p className="text-slate-500 mt-2">昨晚睡得好嗎？</p>
+        <h1 className="text-3xl font-bold text-ink-main">睡眠記錄</h1>
+        <p className="text-ink-sub mt-1">昨晚睡得好嗎？</p>
       </header>
 
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Time Inputs */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <div className="flex items-center space-x-2 mb-3 text-indigo-500">
+          <div className="bg-pastel-blue p-4 rounded-[2rem] shadow-sm">
+            <div className="flex items-center space-x-2 mb-3 text-blue-700">
               <Moon size={20} />
-              <label className="text-sm font-semibold">就寢時間</label>
+              <label htmlFor="sleep-time" className="text-sm font-semibold">就寢時間</label>
             </div>
             <input
+              id="sleep-time"
               type="time"
               value={sleepTime}
               onChange={(e) => setSleepTime(e.target.value)}
-              className="w-full text-2xl font-bold text-slate-800 bg-transparent border-b border-slate-200 focus:border-indigo-500 outline-none p-1"
+              className="w-full text-2xl font-bold text-blue-900 bg-white/50 rounded-xl p-2 border-none outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             />
           </div>
 
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <div className="flex items-center space-x-2 mb-3 text-amber-500">
+          <div className="bg-pastel-yellow p-4 rounded-[2rem] shadow-sm">
+            <div className="flex items-center space-x-2 mb-3 text-yellow-700">
               <Sun size={20} />
-              <label className="text-sm font-semibold">起床時間</label>
+              <label htmlFor="wake-time" className="text-sm font-semibold">起床時間</label>
             </div>
             <input
+              id="wake-time"
               type="time"
               value={wakeTime}
               onChange={(e) => setWakeTime(e.target.value)}
-              className="w-full text-2xl font-bold text-slate-800 bg-transparent border-b border-slate-200 focus:border-amber-500 outline-none p-1"
+              className="w-full text-2xl font-bold text-yellow-900 bg-white/50 rounded-xl p-2 border-none outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
             />
           </div>
         </div>
 
         {/* Calculated Duration */}
-        <div className="text-center">
-            <span className="text-sm text-slate-400 font-medium">總時數</span>
-            <div className="text-4xl font-bold text-slate-800 mt-1">{calculateHours()} <span className="text-lg font-normal text-slate-400">小時</span></div>
+        <div className="text-center bg-neuro-card p-6 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.03)]">
+            <span className="text-sm text-ink-muted font-medium">總時數</span>
+            <div className="text-4xl font-bold text-ink-main mt-1 tabular-nums">{calculateHours()} <span className="text-lg font-normal text-ink-muted">小時</span></div>
         </div>
 
         {/* Quality Selector */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-3">睡眠品質</label>
+          <label className="block text-sm font-medium text-ink-sub mb-3">睡眠品質</label>
           <div className="grid grid-cols-4 gap-2">
             {qualityOptions.map((opt) => (
               <button
                 key={opt.value}
                 type="button"
                 onClick={() => setQuality(opt.value as any)}
-                className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${
+                className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all touch-manipulation active:scale-95 ${
                   quality === opt.value
-                    ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                    : 'border-slate-100 bg-white text-slate-400 hover:border-slate-200'
+                    ? 'border-pastel-olive bg-pastel-green text-green-900'
+                    : 'border-neuro-surface bg-neuro-card text-ink-muted hover:border-gray-300'
                 }`}
               >
-                <span className="text-2xl mb-1">{opt.emoji}</span>
+                <opt.Icon size={24} className={`mb-1 ${quality === opt.value ? 'text-green-700' : 'text-gray-500'}`} />
                 <span className="text-xs font-semibold">{opt.label}</span>
               </button>
             ))}
@@ -118,7 +128,7 @@ const SleepLog: React.FC<SleepLogProps> = ({ onComplete }) => {
 
         <button
           type="submit"
-          className="w-full py-4 bg-indigo-600 text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors flex items-center justify-center space-x-2 shadow-lg shadow-indigo-200"
+          className="w-full py-4 bg-ink-main text-white rounded-2xl font-bold text-lg hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2 shadow-[0_8px_30px_rgb(0,0,0,0.1)] active:scale-[0.98]"
         >
           <Save size={20} />
           <span>儲存記錄 (+10分)</span>

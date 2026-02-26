@@ -2,7 +2,8 @@ import { GoogleGenAI } from "@google/genai";
 import { DashboardData } from "../types";
 
 export const generateHealthReport = async (data: DashboardData): Promise<string> => {
-  // Safely access process.env to avoid ReferenceError if process is undefined
+  // ⚠️ 安全性問題：API Key 不應該暴露在前端程式碼中
+  // 這裡僅作為 Demo 使用，正式環境應透過後端 proxy 呼叫 API
   const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
 
   if (!apiKey) {

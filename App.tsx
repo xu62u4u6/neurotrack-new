@@ -56,11 +56,11 @@ const App: React.FC = () => {
       case AppScreen.DATA_REPORT:
         return <DoctorReport />;
       case AppScreen.COGNITIVE:
-        return <CognitiveTest onComplete={(pts) => handleAddPoints(pts)} />;
+        return <CognitiveTest onComplete={(pts) => handleAddPoints(pts)} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
       case AppScreen.SPEECH:
-        return <SpeechRecording onComplete={(pts) => handleAddPoints(pts)} />;
+        return <SpeechRecording onComplete={(pts) => handleAddPoints(pts)} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
       case AppScreen.SLEEP:
-        return <SleepLog onComplete={(pts) => handleAddPoints(pts)} />;
+        return <SleepLog onComplete={(pts) => handleAddPoints(pts)} onExit={() => setCurrentScreen(AppScreen.DASHBOARD)} />;
       case AppScreen.MEDICATION:
         return <Medication onComplete={(pts) => handleAddPoints(pts)} />;
       case AppScreen.AI_CHAT:

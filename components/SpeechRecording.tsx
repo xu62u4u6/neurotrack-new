@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Mic, Square, Play, UploadCloud } from 'lucide-react';
+import { Mic, Square, Play, UploadCloud, ArrowLeft } from 'lucide-react';
 import { SpeechInput, SpeechOutput } from '../types';
 
 interface SpeechRecordingProps {
     onComplete?: (points: number) => void;
+    onExit?: () => void;
 }
 
-const SpeechRecording: React.FC<SpeechRecordingProps> = ({ onComplete }) => {
+const SpeechRecording: React.FC<SpeechRecordingProps> = ({ onComplete, onExit }) => {
   // Mock Data
   const inputData: SpeechInput = {
     script_text: "今天天氣真好，微風輕輕吹過樹梢，陽光灑在草地上，讓人感到無比舒適與放鬆。",
@@ -80,15 +81,22 @@ const SpeechRecording: React.FC<SpeechRecordingProps> = ({ onComplete }) => {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto min-h-screen pb-24">
+    <div className="p-6 min-h-screen pb-32 bg-neuro-bg">
+      {/* 返回按鈕 */}
+      {onExit && (
+        <button onClick={onExit} aria-label="返回" className="p-2 -ml-2 mb-4 text-ink-muted hover:text-ink-main transition-colors">
+          <ArrowLeft size={24} />
+        </button>
+      )}
+
       <header className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-800">語音評估</h1>
-        <p className="text-slate-500 mt-2">請清晰朗讀以下文字。</p>
+        <h1 className="text-3xl font-bold text-ink-main">語音評估</h1>
+        <p className="text-ink-sub mt-1">請清晰朗讀以下文字。</p>
       </header>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 mb-6">
-        <blockquote className="text-xl leading-relaxed font-medium text-slate-700 border-l-4 border-teal-500 pl-4 py-1">
-          "{inputData.script_text}"
+      <div className="bg-pastel-yellow p-6 rounded-[2rem] shadow-sm mb-6">
+        <blockquote className="text-xl leading-relaxed font-medium text-yellow-900">
+          「{inputData.script_text}」
         </blockquote>
       </div>
 
@@ -96,50 +104,50 @@ const SpeechRecording: React.FC<SpeechRecordingProps> = ({ onComplete }) => {
         <div className="relative">
           {/* Ripple effect when recording */}
           {isRecording && (
-            <div className="absolute inset-0 bg-red-400 rounded-full animate-ping opacity-25"></div>
+            <div className="absolute inset-0 bg-pastel-peach rounded-full animate-ping opacity-40"></div>
           )}
           <button
             onClick={toggleRecording}
-            className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${
-              isRecording ? 'bg-red-500 hover:bg-red-600' : 'bg-teal-600 hover:bg-teal-700'
+            className={`relative z-10 w-24 h-24 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 active:scale-95 touch-manipulation ${
+              isRecording ? 'bg-pastel-peach' : 'bg-pastel-olive'
             }`}
           >
             {isRecording ? (
-              <Square size={32} className="text-white fill-current" />
+              <Square size={32} className="text-red-800 fill-current" />
             ) : (
-              <Mic size={36} className="text-white" />
+              <Mic size={36} className="text-green-900" />
             )}
           </button>
         </div>
 
         <div className="text-center">
-          <p className={`text-3xl font-mono font-bold ${isRecording ? 'text-red-500' : 'text-slate-400'}`}>
+          <p className={`text-3xl font-bold tabular-nums ${isRecording ? 'text-pastel-peach' : 'text-ink-muted'}`}>
             00:{timeLeft.toString().padStart(2, '0')}
           </p>
-          <p className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">
-            {isRecording ? '錄音中...' : '準備錄音'}
+          <p className="text-xs text-ink-muted mt-1 uppercase tracking-wider font-semibold">
+            {isRecording ? '錄音中…' : '準備錄音'}
           </p>
         </div>
 
         {audioUrl && !isRecording && (
-          <div className="w-full animate-in slide-in-from-bottom-4 fade-in duration-500">
-            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 flex items-center justify-between">
+          <div className="w-full">
+            <div className="bg-neuro-card p-4 rounded-2xl shadow-sm mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center">
-                        <Play size={18} className="text-slate-600 ml-1" />
+                    <div className="w-10 h-10 bg-neuro-surface rounded-full flex items-center justify-center">
+                        <Play size={18} className="text-ink-sub ml-1" />
                     </div>
-                    <span className="text-sm font-medium text-slate-600">Recording_01.wav</span>
+                    <span className="text-sm font-medium text-ink-main">Recording_01.wav</span>
                 </div>
-                <span className="text-xs text-slate-400">{(inputData.max_duration - timeLeft).toFixed(1)}s</span>
+                <span className="text-xs text-ink-muted tabular-nums">{(inputData.max_duration - timeLeft).toFixed(1)}s</span>
             </div>
-            
+
             <button
               onClick={handleUpload}
               disabled={uploading}
-              className="w-full py-3 bg-slate-800 text-white rounded-xl font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
+              className="w-full py-4 bg-ink-main text-white rounded-2xl font-bold hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 active:scale-[0.98]"
             >
               {uploading ? (
-                <span>上傳中...</span>
+                <span>上傳中…</span>
               ) : (
                 <>
                   <UploadCloud size={20} />
