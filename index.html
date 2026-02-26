@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroTrack 阿茲海默追蹤</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              neuro: {
+                bg: '#F4EBE6',      // 溫暖大地色底色
+                card: '#FFFFFF',    // 卡片純白底色
+                surface: '#F9FAFB', // 稍暗的表面色
+              },
+              pastel: {
+                yellow: '#FBE082',  // 語音日記 / 開心
+                green: '#CBE4D6',   // 用藥提醒 / 平靜 / 完成進度
+                blue: '#BBD0FF',    // 認知遊戲 / 疲倦
+                peach: '#E39882',   // 困惑 / 圖表輔助色
+                olive: '#919E75',   // 較深的圖表色 / 健康活躍
+                neutral: '#E5E7EB', // 無感 / 預設底色
+              },
+              ink: {
+                main: '#1F2937',    // 主要標題/文字
+                sub: '#6B7280',     // 次要資訊
+                muted: '#9CA3AF',   // 輔助/提示文字
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            borderRadius: {
+              'xl': '1rem',
+              '2xl': '1.5rem',
+              '3xl': '2rem',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #F4EBE6;
+        color: #1F2937;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .active-press:active { transform: scale(0.96); transition: transform 0.1s; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

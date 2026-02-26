@@ -1,0 +1,7 @@
+{
+  "name": "Copy of NeuroTrack - 阿茲海默症長期追蹤 - newUI",
+  "description": "一款專為阿茲海默症患者設計的長期追蹤應用程式，包含認知測驗、健康記錄及 AI 智慧分析功能。",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
