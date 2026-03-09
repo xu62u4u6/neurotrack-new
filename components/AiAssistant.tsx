@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Sparkles, CalendarCheck, Bot } from 'lucide-react';
 import { ChatMessage } from '../types';
-import { GoogleGenAI } from "@google/genai";
 
 const AiAssistant: React.FC = () => {
   const [messages, setMessages] = useState<(ChatMessage & { isSystem?: boolean })[]>([
@@ -48,34 +47,19 @@ const AiAssistant: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // ⚠️ 安全性問題：API Key 不應該暴露在前端程式碼中
-      // 這裡僅作為 Demo 使用，正式環境應透過後端 proxy 呼叫 API
-      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
-      if (!apiKey) throw new Error("No API Key");
-
-      const ai = new GoogleGenAI({ apiKey });
-      const prompt = `
-        你是一位溫柔、耐心、有同理心的健康助手。
-        正在與一位長輩「林爺爺」聊天。
-
-        請遵循以下原則：
-        1. 稱呼他為「林爺爺」。
-        2. 使用鼓勵、正向且溫暖的語氣。
-        3. 內容要易讀，避免生硬名詞。
-        4. 回答不超過 100 字。
-
-        使用者說：${userMsg.text}
-      `;
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: prompt,
+      const response = await fetch('http://localhost:8000/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: userMsg.text, top_k: 5 })
       });
+
+      if (!response.ok) throw new Error('API error');
+      const data = await response.json();
 
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
-        text: response.text || "我收到了，您的身體狀況很棒喔！",
+        text: data.answer,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, botMsg]);
@@ -158,8 +142,8 @@ const AiAssistant: React.FC = () => {
       </div>
 
       {/* 輸入區域 */}
-      <div className="p-4 pb-28">
-        <div className="bg-white rounded-full flex items-center px-5 py-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+      <div className="p-4 pb-6">
+        <div className="bg-neutral-100 rounded-full flex items-center px-5 py-3 border border-neutral-200">
           <input
             type="text"
             name="chat-input"
@@ -168,7 +152,7 @@ const AiAssistant: React.FC = () => {
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="跟助理說說話..."
-            className="bg-transparent flex-1 outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded text-neutral-700 font-medium"
+            className="bg-transparent flex-1 outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded text-neutral-700 font-medium h-10"
           />
           <button
             onClick={handleSend}
